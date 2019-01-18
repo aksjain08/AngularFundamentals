@@ -7,7 +7,7 @@ import { Output } from '@angular/core';
     <div class = "well hoverwell thumbnail">
         <h2>{{event?.name}}</h2>
         <div> Date : {{event?.date}} </div>
-        <div [ngClass]="getStyleClasses()" [ngSwitch]="event?.time"> Time: {{event?.time}}
+        <div [ngStyle]="getStyles()" [ngSwitch]="event?.time"> Time: {{event?.time}}
         <span *ngSwitchCase="'08:00 am'">(Early start)</span>
         <span *ngSwitchCase="'10:00 am'">(Normal Start)</span>
         <span *ngSwitchDefault> (LateStart)</span>
@@ -42,9 +42,10 @@ export class EventThumbNailComponent{
 //     console.log("foo");
 // }
 
-    getStyleClasses()
+    getStyles():any
     {
-        let isNormalStart = this.event.time === '10:00 am';
-        return {green:isNormalStart, bold:isNormalStart}
+        if(this.event && this.event.time === '10:00 am') 
+            return {color:'#003300', 'font-weight': 'bold'}
+        return {}
     }
 }
