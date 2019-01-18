@@ -9,6 +9,11 @@ import { Output } from '@angular/core';
         <div> Date : {{event?.date}} </div>
         <div> Time: {{event?.time}}</div>
         <div> Price : \${{event.price}} </div>
+        <div [ngSwitch]="event?.time">
+            <span *ngSwitchCase="'08:00 am'">Early start</span>
+            <span *ngSwitchCase="'10:00 am'">Mormal Start</span>
+            <span *ngSwitchDefault> LateStart</span>
+        </div>
         <div *ngIf="event?.location">
             <span> Location : {{event.location.address}}</span>
         </div>
